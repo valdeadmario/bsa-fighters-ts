@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Ranga:400,700&display=swap" rel="stylesheet">
+    <title>Street Figth</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+    </div>
+
+    <div id="loading-overlay">
+      <img src="resources/logo.png"/>
+    </div>
+    <!-- Modal window -->
+    <div class="modal">
+      <form class="modal-form modal-content animate">
+        <div class="imgcontainer">
+          <span class="close" title="Close Modal">&times;</span>
+          <img src="" alt="Avatar" class="avatar fighter-image">
+        </div>
+    
+        <div class="container">
+          <label for="health"><b>Health</b></label>
+          <input class="form-health" type="number" placeholder="Enter Health" name="health" required>
+    
+          <label for="power"><b>Power</b></label>
+          <input class="form-power" type="number" placeholder="Enter Power" name="power" required>
+          <button class="change" type="submit">Ready to fight</button>
+      </form>
+    </div>
+
+    <script src="dist/app.bundle.js"></script>
+  </body>
+</html>
