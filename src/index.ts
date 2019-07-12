@@ -1,4 +1,4 @@
-import App from './ts/app';
-import './styles/styles.css';
+import App from "./ts/app";
+import "./styles/styles.css";
 
 new App();

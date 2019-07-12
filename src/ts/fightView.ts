@@ -1,24 +1,13 @@
 import View from "./view";
 import App from "./app";
 import { IFighter } from "./fighter";
-const rootElement: HTMLElement = document.getElementById("root");
+const rootElement = document.getElementById("root") as HTMLDivElement;
 
-export interface IFightView {
+class FightView extends View {
   ring: HTMLElement;
   message: HTMLElement;
-  firstView: any;
-  secondView: any;
-  button: HTMLElement;
-  createFighterToFight: (person:any, isTransform?: boolean) => HTMLElement;
-  createSkills: (name:any, skills:Object) => HTMLElement;
-  winner: (name:string) => void;
-}
-
-class FightView extends View implements IFightView {
-  ring: HTMLElement;
-  message: HTMLElement;
-  firstView: any;
-  secondView: any;
+  firstView: HTMLElement;
+  secondView: HTMLElement;
   button: HTMLElement;
 
   constructor(first: IFighter, second: IFighter) {
@@ -38,7 +27,7 @@ class FightView extends View implements IFightView {
     rootElement.appendChild(this.button);
   }
 
-  createFighterToFight(person:any, isTransform?:boolean):HTMLElement {
+  createFighterToFight(person: IFighter, isTransform?: boolean): HTMLElement {
     const image = this.createElement({
       tagName: "img",
       className: "fighter-image",
@@ -60,7 +49,7 @@ class FightView extends View implements IFightView {
     return fighter;
   }
 
-  createSkills(name:string, skills:Object):HTMLElement {
+  createSkills(name: string, skills: { [key: string]: number }): HTMLElement {
     const list = this.createElement({
       tagName: "ul",
       className: "skills",
@@ -79,7 +68,7 @@ class FightView extends View implements IFightView {
     return list;
   }
 
-  winner(name:string):void {
+  winner(name: string): void {
     const div = this.createElement({ tagName: "div", className: "winner" });
     const back = this.createElement({
       tagName: "button",
@@ -87,6 +76,7 @@ class FightView extends View implements IFightView {
     });
     back.innerText = `Play Again`;
     div.innerHTML = `${name} winner!`;
+
     rootElement.innerHTML = "";
     rootElement.append(div, back);
     back.addEventListener("click", () => {

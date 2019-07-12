@@ -1,22 +1,22 @@
 import Fighter from "./fighter";
 import FightView from "./fightView";
 import { IFighter } from "./fighter";
-import { fighterService } from "./services/fightersService";
+import { FighterDetails } from "./fightersView";
 
 export interface IFight {
-  kick: (attacker: any, blocker: any, message: HTMLElement) => void;
-  fight: (first: any, second: any, message: HTMLElement) => void;
+  kick: (attacker: IFighter, blocker: IFighter, message: HTMLElement) => void;
+  fight: (first: IFighter, second: IFighter, message: HTMLElement) => void;
 }
 
 class Fight extends FightView implements IFight {
-  constructor(firstFighter: any, secondFighter: any) {
+  constructor(firstFighter: FighterDetails, secondFighter: FighterDetails) {
     const first: IFighter = new Fighter(firstFighter);
     const second: IFighter = new Fighter(secondFighter);
     super(first, second);
     this.fight(first, second, this.message);
   }
 
-  kick(attacker: any, blocker: any, message: HTMLElement): void {
+  kick(attacker: IFighter, blocker: IFighter, message: HTMLElement): void {
     const damage = attacker.getHitPower() - blocker.getBlockPower();
     blocker.health -= damage > 0 ? damage : 0;
     if (damage > 0) {
@@ -26,18 +26,16 @@ class Fight extends FightView implements IFight {
     } else {
       message.innerText = `${attacker.name} missed`;
     }
+    document.querySelector(
+      `#${blocker.name} .health`
+    )!.innerHTML = `health: ${Math.round(blocker.health)}`; // !!!!
 
     if (blocker.health <= 0) {
       this.winner(attacker.name);
-      fighterService.putVictory(attacker._id);
-    } else {
-      document.querySelector(
-        `#${blocker.name} .health`
-      ).innerText = `health: ${Math.round(blocker.health)}`;
     }
   }
 
-  fight(first, second, message: HTMLElement): void {
+  fight(first: IFighter, second: IFighter, message: HTMLElement): void {
     const button = document.querySelector(".kick") as HTMLButtonElement;
     button.addEventListener("click", e => {
       this.kick(first, second, message);

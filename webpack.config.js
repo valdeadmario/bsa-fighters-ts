@@ -8,16 +8,22 @@ module.exports = {
     filename: "app.bundle.js"
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json", ".css"]
   },
   module: {
     rules: [
       {
         // Include ts, tsx, js, and jsx files.
-        test: /\.(ts|js)x?$/,
+        test: /\.(j|t)s$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "ts-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        exclude: /node_modules/
       }
     ]
-  }
+  },
+  mode: "development"
 };
