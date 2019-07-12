@@ -10,4 +10,4 @@ The best fighting game is now on the typescript! 😯
 
 `npm run start`
 
-open http://localhost:8080/ and enjoy :)
+open http://localhost:8080/ and enjoy :))
