@@ -5,7 +5,8 @@ module.exports = {
   entry: "./src/index",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "app.bundle.js"
+    filename: "app.bundle.js",
+    publicPath: '/dist/'
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".css"]
@@ -13,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        // Include ts, tsx, js, and jsx files.
+        // Include ts file
         test: /\.(j|t)s$/,
         exclude: /node_modules/,
         loader: "ts-loader"
@@ -25,5 +26,9 @@ module.exports = {
       }
     ]
   },
-  mode: "development"
+  mode: "development",
+  devServer: {
+    inline: true,
+  },
+  devtool: 'inline-source-map',
 };

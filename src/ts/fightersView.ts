@@ -41,7 +41,7 @@ class FightersView extends View {
       if (!(e.target instanceof HTMLElement)) {
         return;
       }
-      const idx: string = e.target.dataset.id;
+      const idx: string | undefined = e.target.dataset.id;
       const oldFighter: FighterDetails = this.fightersDetailsMap.get(idx);
 
       const updatedFighter = {
